@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="libs/normalize.css">
+  <link rel="stylesheet" href="libs/material-icons.css">
+  <link rel="stylesheet" href="md.css">
+  <link rel="stylesheet" href="app.css">
+
+  <script src="libs/lodash.min.js"></script>
+  <script src="libs/angular.js"></script>
+
+  <script src="app.js"></script>
+  <script src="deck/constants.js"></script>
+  <script src="deck/service.js"></script>
+  <script src="settings/constants.js"></script>
+  <script src="settings/ctrl.js"></script>
+  <script src="story/themes.js"></script>
+  <script src="story/ctrl.js"></script>
+  <script src="hand/ctrl.js"></script>
+
+
+</head>
+<!-- single html file for static hosting -->
+<body ng-app="MyApp">
+
+  <div class="sheet tips card-1" ng-controller="settingsCtrl as ctrl" ng-show="ctrl.visible">
+    <h1>Once upon a time</h1>
+    <h2>A party card game for tablets or mobiles</h2>
+    <p>
+      <label ng-repeat="po in ctrl.playersOptions"><input type="radio" ng-model="ctrl.players" value="{{po}}">{{po}} players&nbsp;</label>
+    </p>
+    <p>
+      <label ng-repeat="(value, name) in ctrl.languagesOptions"><input type="radio" ng-model="ctrl.language" value="{{value}}">{{name}} cards&nbsp;</label>
+    </p>
+    <input type="button" value="Start" ng-click="ctrl.startGame()" autofocus/>
+  </div>
+
+  <div class="clear"/>
+
+  <div ng-controller="handCtrl as ctrl">
+    <div class="sheet card card-1 {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
+
+      <dev class="content" ng-show="c.visible">
+        <div  ng-class="{discarded: c.discarded}" ng-switch="c.group">
+            <div ng-switch-when="ending">
+              <h1>{{ctrl.getEndingTitle()}}</h1>
+              <small>{{c.title}}</small>
+            </div>
+            <h1 ng-switch-default>{{c.title}}</h1>
+        </div>
+        <div class="material-icons md-96 md-dark md-inactive" ng-click="ctrl.toggle($index)">{{c.icon}}</div>
+        <div class="action" ng-click="ctrl.discard($index)" ng-show="ctrl.selected && !c.discarded">discard</div>
+        <div class="action" ng-click="ctrl.restore($index)" ng-show="ctrl.selected && c.discarded">restore</div>
+      </dev>
+
+    </div>
+  </div>
+
+  <div class="clear"/>
+
+  <div class="sheet tips card-1">
+    <h1>Rules</h1>
+    <p>Each player has his own cards. Storyteller plays card when it is mentioned as non-insignificant part of story. Storyteller changes by:</p>
+    <ul>
+      <li>Passing. Storyteller may discard a card.</li>
+      <li>Interruption by exact element. Need not be exact words.</li>
+      <li>Interruption by interrupt (red) card of matching group when storyteller plays a card</li>
+      <li>5 sec pause</li>
+      <li>Not making sense</li>
+    </ul>
+    <!--In all cases of storyteller changing, storyteller must draw a card.
+    Interruptions if disputed, are resolved by consensus of players not involved in dispute. If interrupter judged wrong, discard card used for interruption and draw 2 cards.
+    -->
+    <!-- https://boardgamegeek.com/filepage/33996/concise-reference-sheet-hecose -->
+    <p>A player has played all story cards and then plays ending (blue) card. Not allowed to introduce new element after last story card played. More:</p>
+    <ul>
+      <li><a target="_blank" href="https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28game%29#Gameplay">gameplay description</a></li>
+      <li><a target="_blank" href="http://www.atlas-games.com/pdf_storage/ouat_rulebook.pdf">rulebook pdf</a></li>
+      <li>
+        <a target="_blank" href="https://www.youtube.com/watch?v=1vbA7Bk6-pI">long</a> or
+        <a target="_blank" href="https://www.youtube.com/watch?v=haYH0OAMpfA">short</a>
+        <span>movie</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="clear"/>
+
+  <div class="sheet tips card-1" ng-controller="storyCtrl as ctrl">
+    <div ng-click="ctrl.drawTheme()">
+      <h1>{{ctrl.theme.name}}</h1>
+      <strong>example story theme</strong>
+      <p ng-show="ctrl.theme.feel">({{ctrl.theme.feel}})</p>
+      <p>{{ctrl.theme.info}}</p>
+      <p ng-show="ctrl.theme.denizens">denizens: {{ctrl.theme.denizens}}</p>
+    </div>
+  </div>
+
+</body>
+</html>

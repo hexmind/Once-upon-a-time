@@ -1,14 +1,22 @@
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
-  <link rel="stylesheet" href="libs/normalize.css">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <!-- endbower -->
   <link rel="stylesheet" href="libs/material-icons.css">
   <link rel="stylesheet" href="md.css">
   <link rel="stylesheet" href="app.css">
 
-  <script src="libs/lodash.min.js"></script>
-  <script src="libs/angular.js"></script>
-
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
+  <!-- endbower -->
   <script src="app.js"></script>
   <script src="deck/constants.js"></script>
   <script src="deck/service.js"></script>
@@ -18,35 +26,38 @@
   <script src="story/ctrl.js"></script>
   <script src="hand/ctrl.js"></script>
 
-
 </head>
+
 <!-- single html file for static hosting -->
+
 <body ng-app="MyApp">
 
   <div class="sheet tips card-1" ng-controller="settingsCtrl as ctrl" ng-show="ctrl.visible">
     <h1>Once upon a time</h1>
     <h2>A party card game for tablets or mobiles</h2>
     <p>
-      <label ng-repeat="po in ctrl.playersOptions"><input type="radio" ng-model="ctrl.players" value="{{po}}">{{po}} players&nbsp;</label>
+      <label ng-repeat="po in ctrl.playersOptions">
+        <input type="radio" ng-model="ctrl.players" value="{{po}}">{{po}} players&nbsp;</label>
     </p>
     <p>
-      <label ng-repeat="(value, name) in ctrl.languagesOptions"><input type="radio" ng-model="ctrl.language" value="{{value}}">{{name}} cards&nbsp;</label>
+      <label ng-repeat="(value, name) in ctrl.languagesOptions">
+        <input type="radio" ng-model="ctrl.language" value="{{value}}">{{name}} cards&nbsp;</label>
     </p>
     <input type="button" value="Start" ng-click="ctrl.startGame()" autofocus/>
   </div>
 
-  <div class="clear"/>
+  <div class="clear" />
 
   <div ng-controller="handCtrl as ctrl">
     <div class="sheet card card-1 {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
 
       <dev class="content" ng-show="c.visible">
-        <div  ng-class="{discarded: c.discarded}" ng-switch="c.group">
-            <div ng-switch-when="ending">
-              <h1>{{ctrl.getEndingTitle()}}</h1>
-              <small>{{c.title}}</small>
-            </div>
-            <h1 ng-switch-default>{{c.title}}</h1>
+        <div ng-class="{discarded: c.discarded}" ng-switch="c.group">
+          <div ng-switch-when="ending">
+            <h1>{{ctrl.getEndingTitle()}}</h1>
+            <small>{{c.title}}</small>
+          </div>
+          <h1 ng-switch-default>{{c.title}}</h1>
         </div>
         <div class="material-icons md-96 md-dark md-inactive" ng-click="ctrl.toggle($index)">{{c.icon}}</div>
         <div class="action" ng-click="ctrl.discard($index)" ng-show="ctrl.selected && !c.discarded">discard</div>
@@ -56,7 +67,7 @@
     </div>
   </div>
 
-  <div class="clear"/>
+  <div class="clear" />
 
   <div class="sheet tips card-1">
     <h1>Rules</h1>
@@ -84,7 +95,7 @@
     </ul>
   </div>
 
-  <div class="clear"/>
+  <div class="clear" />
 
   <div class="sheet tips card-1" ng-controller="storyCtrl as ctrl">
     <div ng-click="ctrl.drawTheme()">
@@ -97,4 +108,5 @@
   </div>
 
 </body>
+
 </html>

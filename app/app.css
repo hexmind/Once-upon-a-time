@@ -4,53 +4,33 @@
  * colors hue: 100
  */
 
-.sheet {
-  margin: 8px;
-  padding: 4px;
-  border-radius: 2px;
-  background: #fff;
-  display: block;
-  float: left;
-  position: relative;
+body {
+  background: #eeeded;
 }
-
 .tips {
-   width: 632px;
-   background: #FFF9C4;
-   padding: 8px;
- }
-
+  background: #FFF9C4;
+}
 .card {
-  width: 140px;
-  height: 220px;
+  width: 135px;
+  height: 200px;
   text-align: center;
 }
-
+.card, .tips {
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .clear {
   clear: both;
 }
-
 .card h1 {
   font-size: 1.1em;
 }
-
-.card .action {
-  bottom: 4px;
-  width: 95%;
-  height: 30%;
-  line-height: 60px;
-  background-color: rgba(0, 0, 0, 0.1);
-  position: absolute;
-}
-
 .card.interrupt {
   background-color: #ffcdd2;
 }
-
-.card.Ending {
+.card.ending {
   background-color: #bbdefb;
 }
-
 .discarded {
-    color: #bbb;
+  color: #bbb;
 }

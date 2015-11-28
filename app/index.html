@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="md.css">
   <link rel="stylesheet" href="app.css">
 
   <!-- bower:js -->
@@ -102,7 +101,7 @@
 
   <div layout-gt-md="row">
 
-    <md-card class="tips" flex="66">
+    <md-card class="tips" flex="60">
       <a name="rules" />
       <h1>Rules</h1>
       <p>Each player has his own cards. Storyteller plays card when it is mentioned as non-insignificant part of story. Storyteller changes by:</p>
@@ -129,23 +128,14 @@
       </ul>
     </md-card>
 
-    <md-card class="tips" ng-controller="storyCtrl as ctrl" flex="33">
+    <md-card class="tips" flex="grow" ng-controller="storyCtrl as ctrl">
       <div ng-click="ctrl.drawTheme()">
         <h1>{{ctrl.theme.name}}</h1>
-        <strong>example story theme</strong>
-        <p ng-show="ctrl.theme.feel">
-          <strong>How</strong>
-          <p>{{ctrl.theme.feel}}</p>
-        </p>
-        <p>
-          <strong>What</strong>
-          <p>{{ctrl.theme.info}}</p>
-        </p>
-        <p ng-show="ctrl.theme.denizens">
-          <strong>Who</strong>
-          <p>{{ctrl.theme.denizens}}
-          </p>
-        </p>
+        <p>example story theme</p>
+        <div ng-show="p.content" ng-repeat="p in ctrl.theme.body">
+          <h2>{{p.title}}</h2>
+          <p>{{p.content}}</p>
+        </div>
       </div>
     </md-card>
 

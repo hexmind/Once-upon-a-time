@@ -28,6 +28,11 @@ body {
 .card h1 {
   font-size: 1.1em;
 }
+
+.card h2 {
+  font-size: 1em;
+}
+
 .card.interrupt {
   background-color: #ffcdd2;
 }

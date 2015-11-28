@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "angular": "^1.4.x",
-    "angular-material": "^1.0.0",
+    "angular-material": "^1.0.0",    
     "lodash": "~3.10.1"
   },
   "devDependencies": {

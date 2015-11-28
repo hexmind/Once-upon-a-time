@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
-  <link rel="stylesheet" href="libs/material-icons.css">
+  <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="md.css">
   <link rel="stylesheet" href="app.css">
 
@@ -89,7 +88,10 @@
             </div>
             <h1 ng-switch-default>{{c.title}}</h1>
           </div>
+          <span class="lg {{c.icon}} light" ng-click="ctrl.toggle($index)" />
+          <!--
           <div class="material-icons md-96 md-dark md-inactive" ng-click="ctrl.toggle($index)">{{c.icon}}</div>
+          -->
           <md-button class="md-warn" ng-click="ctrl.discard($index)" ng-show="ctrl.selected && !c.discarded">discard</md-button>
           <md-button class="md-primary" ng-click="ctrl.restore($index)" ng-show="ctrl.selected && c.discarded">restore</md-button>
         </dev>
@@ -101,7 +103,7 @@
   <div layout-gt-md="row">
 
     <md-card class="tips" flex="66">
-      <a name="rules"/>
+      <a name="rules" />
       <h1>Rules</h1>
       <p>Each player has his own cards. Storyteller plays card when it is mentioned as non-insignificant part of story. Storyteller changes by:</p>
       <ul>

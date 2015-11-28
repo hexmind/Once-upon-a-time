@@ -12,8 +12,11 @@ body {
 }
 .card {
   width: 135px;
-  height: 200px;
+  height: 220px;
   text-align: center;
+}
+.card *:focus {
+  outline: none;
 }
 .card, .tips {
   padding-left: 8px;
@@ -33,4 +36,16 @@ body {
 }
 .discarded {
   color: #bbb;
+}
+.mdi.sm {
+  font-size: 2em;
+}
+.mdi.md {
+  font-size: 4em;
+}
+.mdi.lg {
+  font-size: 6em;
+}
+.mdi.light {
+  color: rgba(0, 0, 0, 0.26);
 }

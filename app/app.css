@@ -58,18 +58,21 @@ a {
 .md.lg {
   font-size: 6em;
 }
-md-icon {
-  text-align: left;
-}
-md-icon.sm {
+.card md-icon.sm {
   font-size: 24px;
   height: 24px;
+  margin-left: 4px;
 }
-md-icon.md {
+.card md-icon.md {
   font-size: 48px;
   height: 48px;
+  margin-left: 7px;
 }
-md-icon.lg {
+.card md-icon.lg {
   font-size: 96px;
   height: 96px;
+  margin-left: 15px;
+}
+.card md-icon {
+  display: block;
 }

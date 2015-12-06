@@ -1,0 +1,26 @@
+<md-card ng-controller="settingsCtrl as ctrl" ng-show="ctrl.visible">
+  <md-card-content>
+    <h2 class="md-title">The party card game for tablets or mobiles</h2>
+
+    <div layout-align="start center" layout-gt-sm="row">
+      <md-input-container>
+        <md-select ng-model="ctrl.players" placeholder="players">
+          <md-option ng-repeat="po in ctrl.playersOptions" value="{{po}}">{{po}}
+            players</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <md-radio-group ng-model="ctrl.language">
+          <md-radio-button ng-repeat="(value, name) in ctrl.languagesOptions" value="{{value}}">{{name}}</md-radio-button>
+        </md-radio-group>
+      </md-input-container>
+
+      <md-input-container>
+        <md-button autofocus class="md-raised md-primary" ng-click="ctrl.startGame()" ng-show="ctrl.players">Start</md-button>
+      </md-input-container>
+
+    </div>
+
+  </md-card-content>
+</md-card>

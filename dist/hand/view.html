@@ -1,0 +1,22 @@
+<div ng-controller="handCtrl as ctrl">
+  <div layout="row" layout-wrap>
+    <md-card class="card {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
+      <!--
+    <div class="sheet card card-1 {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
+    -->
+      <dev class="content" ng-show="c.visible">
+        <div ng-class="{discarded: c.discarded}" ng-switch="c.group">
+          <div ng-switch-when="ending">
+            <h1>{{ctrl.getEndingTitle()}}</h1>
+            <small>{{c.title}}</small>
+          </div>
+          <h1 ng-switch-default>{{c.title}}</h1>
+        </div>
+        <!--{{c.mdiIcon}},<span class="md {{c.mdiIcon}} light" ng-click="ctrl.toggle($index)" />-->
+        <md-icon class="lg light" ng-click="ctrl.toggle($index)">{{c.icon}}</md-icon>
+        <md-button class="md-warn" ng-click="ctrl.discard($index)" ng-show="ctrl.selected && !c.discarded">discard</md-button>
+        <md-button class="md-primary" ng-click="ctrl.restore($index)" ng-show="ctrl.selected && c.discarded">restore</md-button>
+      </dev>
+    </md-card>
+  </div>
+</div>

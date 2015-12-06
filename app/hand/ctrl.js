@@ -6,6 +6,7 @@ angular
     this.cards = [];
 
     $scope.$on('gameStartedEvent', onGameStartedEvent);
+
     if (appConstants.autostart) {
       initHand({
         cards: 9,
@@ -25,7 +26,7 @@ angular
 
     this.toggle = function(index) {
       var selected = !this.selected;
-      _.each(this.cards, function(c) {
+      _.each(this.cards, c => {
         c.visible = !selected;
       });
       this.selected = selected;

@@ -2,143 +2,43 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-  <!-- endbower -->
-  <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="app.css">
-
-  <!-- bower:js -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-aria/angular-aria.js"></script>
-  <script src="bower_components/angular-material/angular-material.js"></script>
-  <script src="bower_components/lodash/lodash.js"></script>
-  <!-- endbower -->
-  <script src="app.js"></script>
-  <script src="deck/constants.js"></script>
-  <script src="deck/service.js"></script>
-  <script src="settings/constants.js"></script>
-  <script src="settings/ctrl.js"></script>
-  <script src="story/themes.js"></script>
-  <script src="story/ctrl.js"></script>
-  <script src="hand/ctrl.js"></script>
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="bundle.js"/></script>
 </head>
-
-<!-- single html file for static hosting -->
 
 <body ng-app="MyApp">
 
-  <div>
-
-    <md-content class="md-padding">
-
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h1>Once upon a time</h1>
-        </div>
-      </md-toolbar>
-
-      <md-card ng-controller="settingsCtrl as ctrl" ng-show="ctrl.visible">
-        <md-card-content class="tips">
-          <h2 class="md-title">The party card game for tablets or mobiles</h2>
-
-          <div layout-gt-sm="row" layout-align="start center">
-            <md-input-container>
-              <md-select placeholder="players" ng-model="ctrl.players">
-                <md-option ng-repeat="po in ctrl.playersOptions" value="{{po}}">{{po}} players</md-option>
-              </md-select>
-            </md-input-container>
-
-            <md-input-container>
-              <md-radio-group ng-model="ctrl.language">
-                <md-radio-button ng-repeat="(value, name) in ctrl.languagesOptions" value="{{value}}">{{name}}</md-radio-button>
-              </md-radio-group>
-            </md-input-container>
-
-            <md-input-container>
-              <md-button class="md-raised md-primary" ng-click="ctrl.startGame()" ng-show="ctrl.players" autofocus>Start</md-button>
-            </md-input-container>
-
-            <md-input-container>
-              <md-button class="md-raised" ng-href="#rules">Rules</md-button>
-            </md-input-container>
-
-          </div>
-
-        </md-card-content>
-      </md-card>
-    </md-content>
-  </div>
-
-  <div ng-controller="handCtrl as ctrl">
-    <div layout="row" layout-wrap>
-      <md-card class="card {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
-        <!--
-      <div class="sheet card card-1 {{c.group}}" ng-class="{interrupt: c.interrupt}" ng-repeat="c in ctrl.cards">
-      -->
-        <dev class="content" ng-show="c.visible">
-          <div ng-class="{discarded: c.discarded}" ng-switch="c.group">
-            <div ng-switch-when="ending">
-              <h1>{{ctrl.getEndingTitle()}}</h1>
-              <small>{{c.title}}</small>
-            </div>
-            <h1 ng-switch-default>{{c.title}}</h1>
-          </div>
-          <span class="lg {{c.icon}} light" ng-click="ctrl.toggle($index)" />
-          <!--
-          <div class="material-icons md-96 md-dark md-inactive" ng-click="ctrl.toggle($index)">{{c.icon}}</div>
-          -->
-          <md-button class="md-warn" ng-click="ctrl.discard($index)" ng-show="ctrl.selected && !c.discarded">discard</md-button>
-          <md-button class="md-primary" ng-click="ctrl.restore($index)" ng-show="ctrl.selected && c.discarded">restore</md-button>
-        </dev>
-      </md-card>
-    </div>
-  </div>
-  </div>
-
-  <div layout-gt-md="row">
-
-    <md-card class="tips" flex="60">
-      <a name="rules" />
-      <h1>Rules</h1>
-      <p>Each player has his own cards. Storyteller plays card when it is mentioned as non-insignificant part of story. Storyteller changes by:</p>
-      <ul>
-        <li>Passing. Storyteller may discard a card.</li>
-        <li>Interruption by exact element. Need not be exact words.</li>
-        <li>Interruption by interrupt (red) card of matching group when storyteller plays a card</li>
-        <li>5 sec pause</li>
-        <li>Not making sense</li>
-      </ul>
-      <!--In all cases of storyteller changing, storyteller must draw a card.
-    Interruptions if disputed, are resolved by consensus of players not involved in dispute. If interrupter judged wrong, discard card used for interruption and draw 2 cards.
-    -->
-      <!-- https://boardgamegeek.com/filepage/33996/concise-reference-sheet-hecose -->
-      <p>A player has played all story cards and then plays ending (blue) card. Not allowed to introduce new element after last story card played. More:</p>
-      <ul>
-        <li><a target="_blank" href="https://en.wikipedia.org/wiki/Once_Upon_a_Time_%28game%29#Gameplay">gameplay description</a></li>
-        <li><a target="_blank" href="http://www.atlas-games.com/pdf_storage/ouat_rulebook.pdf">rulebook pdf</a></li>
-        <li>
-          <a target="_blank" href="https://www.youtube.com/watch?v=1vbA7Bk6-pI">long</a> or
-          <a target="_blank" href="https://www.youtube.com/watch?v=haYH0OAMpfA">short</a>
-          <span>movie</span>
-        </li>
-      </ul>
-    </md-card>
-
-    <md-card class="tips" flex="grow" ng-controller="storyCtrl as ctrl">
-      <div ng-click="ctrl.drawTheme()">
-        <h1>{{ctrl.theme.name}}</h1>
-        <p>example story theme</p>
-        <div ng-show="p.content" ng-repeat="p in ctrl.theme.body">
-          <h2>{{p.title}}</h2>
-          <p>{{p.content}}</p>
-        </div>
+  <md-content class="md-padding">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>Once upon a time</h1>
       </div>
-    </md-card>
+    </md-toolbar>
 
+      <md-tabs class="md-accent" md-selected="1" md-dynamic-height md-border-bottom>
+        <md-tab label="Rules">
+          <md-content>
+            <ng-include src="'rules/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Settings">
+          <md-content>
+            <ng-include src="'settings/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Game">
+          <md-content>
+            <ng-include src="'hand/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Story theme">
+          <md-content>
+            <ng-include src="'themes/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+
+  </md-content>
 </body>
 
 </html>

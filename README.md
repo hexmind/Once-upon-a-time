@@ -2,5 +2,4 @@
 
 ## A party card game for tablets or mobiles
 
-## Installation
-bower install && grunt bowerInstall
+(in progress)

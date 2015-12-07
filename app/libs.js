@@ -3,6 +3,6 @@ require("angular");
 require("angular-material");
 require("angular-animate");
 require("angular-aria");
-require("mdi");
+// require("mdi");
 require("lodash");
 // require("normalize-css");

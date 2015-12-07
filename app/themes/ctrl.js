@@ -2,7 +2,7 @@ angular
   .module('MyApp')
   .controller('storyCtrl', function(storyThemes) {
 
-    const formatTheme = data => {
+    function formatTheme(data) {
       return {
         name: data.name,
         body: [{

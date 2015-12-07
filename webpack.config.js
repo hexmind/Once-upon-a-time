@@ -19,9 +19,12 @@ module.exports = {
       modulesDirectories: [PATHS.app]
     },
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
+      exclude: /(node_modules|bower_components)/,
       loader: 'babel',
-      exclude: /node_modules/
+      query: {
+        presets: ['react', 'es2015']
+      }
     }, {
       test: /\.html$/,
       loader: 'file?name=[path][name].[ext]'

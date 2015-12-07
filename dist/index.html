@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="bundle.js"/></script>
+</head>
+
+<body ng-app="MyApp">
+
+  <md-content class="md-padding">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>Once upon a time</h1>
+      </div>
+    </md-toolbar>
+
+      <md-tabs class="md-accent" md-selected="1" md-dynamic-height md-border-bottom>
+        <md-tab label="Rules">
+          <md-content>
+            <ng-include src="'rules/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Settings">
+          <md-content>
+            <ng-include src="'settings/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Game">
+          <md-content>
+            <ng-include src="'hand/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+        <md-tab label="Story theme">
+          <md-content>
+            <ng-include src="'themes/view.html'"></ng-include>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+
+  </md-content>
+</body>
+
+</html>

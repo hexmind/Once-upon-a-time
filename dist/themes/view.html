@@ -1,0 +1,18 @@
+<md-card ng-controller="storyCtrl as ctrl">
+  <md-card-content>
+    <h1>{{ctrl.theme.name}}</h1>
+    <p>example story theme</p>
+    <div ng-repeat="p in ctrl.theme.body" ng-show="p.content">
+      <h2>{{p.title}}</h2>
+      <p>{{p.content}}</p>
+    </div>
+
+    <md-input-container layout-gt-sm="columns">
+      <md-button class="md-raised" ng-click="ctrl.drawTheme()">Other</md-button>
+      <md-button class="md-raised" ng-href="http://tvtropes.org/pmwiki/storygen.php" target="_blank">
+        <md-icon>open_in_new</md-icon>idea generator
+      </md-button>
+    </md-input-container>
+
+  </md-card-content>
+</md-card>

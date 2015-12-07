@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "617c9ac8f41fc8ed0f5a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f6220db38d1de51b23e7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -548,20 +548,24 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	__webpack_require__(1);
-	__webpack_require__(17);
+	__webpack_require__(16);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 
 	__webpack_require__(2);
 	__webpack_require__(6);
 	__webpack_require__(8);
 	__webpack_require__(9);
 	__webpack_require__(11);
+	// require("mdi");
 	__webpack_require__(14);
-	__webpack_require__(15);
 	// require("normalize-css");
 
 /***/ },
@@ -56923,12 +56927,6 @@
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "_/node_modules/mdi/preview.html";
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
 	 * @license
 	 * lodash 3.10.1 (Custom Build) <https://lodash.com/>
@@ -69281,10 +69279,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module), (function() { return this; }())))
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -69300,11 +69298,14 @@
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(18);
+	"use strict";
 
+	__webpack_require__(17);
+
+	__webpack_require__(19);
 	__webpack_require__(20);
 	__webpack_require__(21);
 	__webpack_require__(22);
@@ -69317,16 +69318,15 @@
 	__webpack_require__(29);
 	__webpack_require__(30);
 	__webpack_require__(31);
-	__webpack_require__(32);
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(19);
+	var content = __webpack_require__(18);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -69335,8 +69335,8 @@
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(19, function() {
-				var newContent = __webpack_require__(19);
+			module.hot.accept(18, function() {
+				var newContent = __webpack_require__(18);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -69346,7 +69346,7 @@
 	}
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -69360,8 +69360,10 @@
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	angular.module('MyApp', ['ngMaterial']).constant('appConstants', {
 	  cardsPerPlayers: {
@@ -69375,7 +69377,7 @@
 	});
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -69409,7 +69411,7 @@
 	});
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -71025,19 +71027,19 @@
 	});
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	angular.module('MyApp').service("deckService", function (deckConstants, iconsService) {
 
-	  const getAllCards = settings => {
+	  var getAllCards = function getAllCards(settings) {
 	    var lang = settings.language;
 	    return deckConstants[lang].basic;
 	  };
 
-	  const createCard = data => {
+	  var createCard = function createCard(data) {
 	    var mdiIcon = iconsService.getMdiIcon(data.group);
 	    var icon = iconsService.getIcon(data.group);
 	    return _.assign(data, {
@@ -71048,7 +71050,9 @@
 	  };
 
 	  this.drawCards = function (settings) {
-	    const isEnding = e => e.group === 'ending';
+	    var isEnding = function isEnding(e) {
+	      return e.group === 'ending';
+	    };
 	    var deck = getAllCards(settings);
 	    var cards = settings.cards;
 	    var ending = _.chain(deck).shuffle().find(isEnding).value();
@@ -71059,8 +71063,10 @@
 	});
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	angular.module('MyApp').controller('handCtrl', function ($scope, deckService, appConstants, translateSevice) {
 
@@ -71088,7 +71094,7 @@
 
 	  this.toggle = function (index) {
 	    var selected = !this.selected;
-	    _.each(this.cards, c => {
+	    _.each(this.cards, function (c) {
 	      c.visible = !selected;
 	    });
 	    this.selected = selected;
@@ -71109,13 +71115,13 @@
 	});
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "hand/view.html";
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -71140,8 +71146,10 @@
 	});
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	angular.module('MyApp').controller('settingsCtrl', function ($rootScope, appConstants) {
 
@@ -71167,13 +71175,13 @@
 	});
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "settings/view.html";
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -71261,12 +71269,14 @@
 	});
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	angular.module('MyApp').controller('storyCtrl', function (storyThemes) {
 
-	  const formatTheme = data => {
+	  function formatTheme(data) {
 	    return {
 	      name: data.name,
 	      body: [{
@@ -71280,7 +71290,7 @@
 	        content: data.denizens
 	      }]
 	    };
-	  };
+	  }
 
 	  this.drawTheme = function () {
 	    var themes = storyThemes.en;
@@ -71291,13 +71301,13 @@
 	});
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "themes/view.html";
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "rules/view.html";
